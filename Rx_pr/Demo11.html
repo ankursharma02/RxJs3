@@ -1,0 +1,22 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <input type="text"/>
+    <button>Click me</button>    
+    </body>
+    <script src="https://unpkg.com/@reactivex/rxjs@5.3.0/dist/global/Rx.js"></script>
+    <script>
+       var observable=Rx.Observable.of(1,2,3,4,5);
+       observable
+       .scan((total,currentvalue)=>{
+           return total+currentvalue;
+       },0)
+       .subscribe({
+           next:function(value){
+               console.log(value);
+           }
+       });  
+    </script>
+</html> 

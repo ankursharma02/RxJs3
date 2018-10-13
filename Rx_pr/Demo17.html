@@ -1,0 +1,25 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <input type="text"/>
+    <button>Click me</button>    
+    </body>
+    <script src="https://unpkg.com/@reactivex/rxjs@5.3.0/dist/global/Rx.js"></script>
+    <script>
+ var observable = Rx.Observable.interval(1000);
+ var subscription =observable.subscribe(x => console.log('first: ' + x));
+ var childSubscription = observable.subscribe(x => console.log('second: ' + x));
+ 
+subscription.add(childSubscription);
+// Later:
+// This cancels the ongoing Observable execution which
+// was started by calling subscribe with an Observer.
+//subscription.unsubscribe();
+setTimeout(() => {
+  // Unsubscribes BOTH subscription and childSubscription
+  subscription.unsubscribe();
+}, 5000); 
+    </script>
+</html> 
